@@ -9,10 +9,10 @@
     <v-layout wrap>
       <v-flex xs4 v-for="(item, index) in wholeResponse" :key="index" mb-2>
         <v-card>
-          <v-img :src="image.poster" aspect-ratio="1"></v-img>
+          <v-img :src="item.Poster" aspect-ratio="1"></v-img>
           <v-card-title primary-title>
             <div>
-              <h2>{{ item.title }}</h2>
+              <h2>{{ item.Title }}</h2>
               <div>Year: {{ item.Year }}</div>
               <div>Type: {{ item.Type }}</div>
               <div>IMDB-ID: {{ item.imdbID }}</div>
@@ -44,12 +44,17 @@ export default {
         "http://www.omdbapi.com/?s=Star_Wars&apikey=3670c846&page=1&type=movie&Content-Type=application/json"
       )
       .then(response => {
-        this.wholeResponse = response.data.Search;
+        this.wholeResponse = response.data;
         this.loading = false;
       })
       .catch(error => {
         console.log(error);
       });
+  },
+  methods: {
+    singleMovie(id) {
+      this.$router.push("/movie/" + id);
+    }
   }
 };
 </script>
