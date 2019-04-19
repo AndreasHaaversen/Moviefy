@@ -6,12 +6,11 @@
         <span class="font-weight-light">MATERIAL DESIGN</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
+      <v-flex xa12 sm6 md3>
+        <v-text-field label="Movie Name" v-model="searchString"></v-text-field>
+      </v-flex>
+      <v-btn flat :disabled="!dataAvaliable" @click="searchMovie">
+        <span class="mr-2">Search</span>
       </v-btn>
     </v-toolbar>
 
@@ -23,13 +22,23 @@
 
 <script>
 export default {
-  name: 'App',
-  components: {
-  },
-  data () {
+  name: "App",
+  components: {},
+  data() {
     return {
-      //
+      searchString: ""
+    };
+  },
+  methods: {
+    searchMovie() {
+      this.$router.push("/search/" + this.searchString);
+      this.searchString = "";
+    }
+  },
+  computed: {
+    dataAvaliable() {
+      return this.searchString !== null && this.searchString != "";
     }
   }
-}
+};
 </script>

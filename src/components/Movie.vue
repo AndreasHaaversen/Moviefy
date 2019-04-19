@@ -76,10 +76,11 @@ export default {
     };
   },
   mounted() {
+    const url = "http://www.omdbapi.com/?apikey=b76b385c&Content-Type=application/json"
+        + "&i="
+        + this.id;
     axios
-      .get(
-        "http://www.omdbapi.com/?apikey=b76b385c&i=tt0076759&Content-Type=application/json"
-      )
+      .get(url)
       .then(response => {
         this.singleMovie = response.data;
         this.loading = false;
