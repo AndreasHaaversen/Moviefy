@@ -5,6 +5,12 @@
     </div>
   </v-container>
 
+  <v-container v-else-if="noData">
+    <div class="text-xs-center">
+      <h2>No matches for "{{ name }}" could be found</h2>>
+    </div>
+  </v-container>
+
   <v-container v-else grid-list-xl>
     <v-layout wrap>
       <v-flex xs4 v-for="(item, index) in movieResponse" :key="index" mb-2>
@@ -21,8 +27,7 @@
           </v-card-title>
 
           <v-card-actions>
-            <v-btn round color="green" @click="singleMovie(item.imdbID)">View</v-btn>
-            <v-btn round color="green">Visit site</v-btn>
+            <v-btn flat color="green" @click="singleMovie(item.imdbID)">View</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -31,14 +36,15 @@
 </template>
 
 <script>
-import axios from "axios";
+import movieApi from "@/services/MovieAPI";
 
 export default {
   props: ["name"],
   data() {
     return {
       movieResponse: [],
-      loading: true
+      loading: true,
+      noData: false
     };
   },
   methods: {
@@ -47,15 +53,17 @@ export default {
     },
 
     fetchResult(value) {
-      const url =
-        "http://www.omdbapi.com/?apikey=3670c846&Content-Type=application/json" +
-        "&s=" +
-        value;
-      axios
+      movieApi.fetchMovieCollection(value)
         .get(url)
         .then(response => {
-          this.movieResponse = response.data.Search;
-          this.loading = false;
+          if (response.Response === "True") {
+            this.movieResponse = response.Search;
+            this.loading = false;
+            this.noData = false;
+          } else {
+            this.noData = true;
+            this.loading = false;
+          }
         })
         .catch(error => {
           console.log(error);
@@ -63,7 +71,7 @@ export default {
     }
   },
   mounted() {
-    fetchResult(this.name);
+    this.fetchResult(this.name);
   },
   watch: {
     name(value) {

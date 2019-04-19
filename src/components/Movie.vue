@@ -62,8 +62,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import { error } from "util";
+import movieApi from "@/services/MovieAPI";
 
 export default {
   props: ["id"],
@@ -72,17 +71,20 @@ export default {
       singleMovie: "",
       dialog: false,
       loading: true,
-      ratings: ''
+      ratings: ""
     };
   },
   mounted() {
-    const url = "http://www.omdbapi.com/?apikey=b76b385c&Content-Type=application/json"
-        + "&i="
-        + this.id;
-    axios
-      .get(url)
+    movieApi
+      .fetchSingleMovie(this.id)
       .then(response => {
-        this.singleMovie = response.data;
+        this.singleMovie = response;
+        this.ratings = this.singleMovie.Ratings;
+        this.ratings.forEach(function(element) {
+          element.value = parseFloat(element.Value.split(/\/|%/)[0]);
+          element.Value =
+            element.value <= 10 ? element.value / 2 : element.value / 20;
+        });
         this.loading = false;
       })
       .catch(error => {
@@ -90,8 +92,8 @@ export default {
       });
   },
   methods: {
-    back () {
-      this.$router.push('/')
+    back() {
+      this.$router.push("/");
     }
   }
 };

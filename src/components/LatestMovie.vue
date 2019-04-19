@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import movieApi from "@/services/MovieAPI";
 
 export default {
   data() {
@@ -39,17 +39,10 @@ export default {
     };
   },
   mounted() {
-    axios
-      .get(
-        "http://www.omdbapi.com/?s=Star_Wars&apikey=3670c846&page=1&type=movie&Content-Type=application/json"
-      )
-      .then(response => {
-        this.wholeResponse = response.data.Search;
-        this.loading = false;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    movieApi.fetchMovieCollection("Star Wars").then(response => {
+      this.wholeResponse = response.Search;
+      this.loading = false;
+    });
   },
   methods: {
     singleMovie(id) {

@@ -2,8 +2,13 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <router-link
+          to='/'
+          tag='span'
+          style='cursor: pointer'>
+        <span>MOVIE</span>
+        <span class="font-weight-light">FY</span>
+        </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-flex xa12 sm6 md3>
