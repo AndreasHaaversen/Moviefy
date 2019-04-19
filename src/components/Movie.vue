@@ -29,7 +29,8 @@
             </div>
           </v-card-title>
           <v-card-actions>
-            <v-btn flat color="green" @click="back">back</v-btn>
+            <v-btn flat color="green" @click="back">Back</v-btn>
+            <v-btn v-if="singleMovie.Website" flat color="green" @click="website">Website</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -106,6 +107,9 @@ export default {
   methods: {
     back() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
+    },
+    website () {
+        window.open(this.singleMovie.Website)
     }
   }
 };
