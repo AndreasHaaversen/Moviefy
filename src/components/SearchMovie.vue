@@ -41,11 +41,9 @@ export default {
       loading: true
     };
   },
-  mouted() {
+  mounted() {
     const url =
-      "http://www.omdbapi.com/?apikey=3670c846&Content-Type=application/json" +
-      "&s=" +
-      this.name;
+      "http://www.omdbapi.com/?apikey=3670c846&Content-Type=application/json" + "&s=" + this.name;
     axios
       .get(url)
       .then(response => {

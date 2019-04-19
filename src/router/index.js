@@ -20,7 +20,7 @@ export default new VueRouter({
       component: Movie
     },
     {
-      path: "/searhc/:name",
+      path: "/search/:name",
       name: "SearchMovie",
       props: true,
       component: SearchMovie
