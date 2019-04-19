@@ -2,12 +2,9 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <router-link
-          to='/'
-          tag='span'
-          style='cursor: pointer'>
-        <span>MOVIE</span>
-        <span class="font-weight-light">FY</span>
+        <router-link to="/" tag="span" style="cursor: pointer">
+          <span>MOVIE</span>
+          <span class="font-weight-light">FY</span>
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>

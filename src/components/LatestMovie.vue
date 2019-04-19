@@ -1,7 +1,12 @@
 <template>
   <v-container v-if="loading">
     <div class="text-xs-center">
-      <v-progress-circular indeterminate :size="150" width="8" color="green"></v-progress-circular>
+      <v-progress-circular
+        indeterminate
+        :size="150"
+        width="8"
+        color="green"
+      ></v-progress-circular>
     </div>
   </v-container>
 
@@ -20,7 +25,9 @@
           </v-card-title>
 
           <v-card-actions class="justify-center">
-            <v-btn flat color="green" @click="singleMovie(item.imdbID)">View</v-btn>
+            <v-btn flat color="green" @click="singleMovie(item.imdbID)"
+              >View</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-flex>

@@ -1,7 +1,12 @@
 <template>
   <v-container v-if="loading">
     <div class="text-xs-center">
-      <v-progress-circular indeterminate :size="150" :width="8" color="green"></v-progress-circular>
+      <v-progress-circular
+        indeterminate
+        :size="150"
+        :width="8"
+        color="green"
+      ></v-progress-circular>
     </div>
   </v-container>
 
@@ -12,13 +17,15 @@
           <v-img :src="singleMovie.Poster" aspect-ratio="2"></v-img>
           <v-card-title primary-title>
             <div>
-              <h2 class="headline mb-0">{{singleMovie.Title}}-{{singleMovie.Year}}</h2>
-              <p>{{ singleMovie.Plot}}</p>
+              <h2 class="headline mb-0">
+                {{ singleMovie.Title }}-{{ singleMovie.Year }}
+              </h2>
+              <p>{{ singleMovie.Plot }}</p>
               <h3>Actors:</h3>
-              {{singleMovie.Actors}}
+              {{ singleMovie.Actors }}
               <h4>Awards:</h4>
-              {{singleMovie.Awards}}
-              <p>Genre: {{singleMovie.Genre}}</p>
+              {{ singleMovie.Awards }}
+              <p>Genre: {{ singleMovie.Genre }}</p>
             </div>
           </v-card-title>
           <v-card-actions>
@@ -33,17 +40,22 @@
           <v-dialog v-model="dialog" width="500">
             <v-btn slot="activator" color="green" dark>View Ratings</v-btn>
             <v-card>
-              <v-card-title class="headline grey lighten-2" primary-title>Ratings</v-card-title>
+              <v-card-title class="headline grey lighten-2" primary-title
+                >Ratings</v-card-title
+              >
               <v-card-text>
                 <table style="width:100%" border="1">
                   <tr>
                     <th>Source</th>
                     <th>Ratings</th>
                   </tr>
-                  <tr v-for="(rating,index) in this.ratings" :key="index">
-                    <td align="center">{{ratings[index].Source}}</td>
+                  <tr v-for="(rating, index) in this.ratings" :key="index">
+                    <td align="center">{{ ratings[index].Source }}</td>
                     <td align="center">
-                      <v-rating :half-increments="true" :value="ratings[index].Value"></v-rating>
+                      <v-rating
+                        :half-increments="true"
+                        :value="ratings[index].Value"
+                      ></v-rating>
                     </td>
                   </tr>
                 </table>
@@ -99,5 +111,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

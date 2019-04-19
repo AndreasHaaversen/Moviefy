@@ -1,13 +1,19 @@
 <template>
   <v-container v-if="loading">
     <div class="text-xs-center">
-      <v-progress-circular indeterminate :size="150" :width="8" color="green"></v-progress-circular>
+      <v-progress-circular
+        indeterminate
+        :size="150"
+        :width="8"
+        color="green"
+      ></v-progress-circular>
     </div>
   </v-container>
 
   <v-container v-else-if="noData">
     <div class="text-xs-center">
-      <h2>No matches for "{{ name }}" could be found</h2>>
+      <h2>No matches for "{{ name }}" could be found</h2>
+      >
     </div>
   </v-container>
 
@@ -19,15 +25,17 @@
 
           <v-card-title primary-title>
             <div>
-              <h2>{{item.Title}}</h2>
-              <div>Year: {{item.Year}}</div>
-              <div>Type: {{item.Type}}</div>
-              <div>IMDB-id: {{item.imdbID}}</div>
+              <h2>{{ item.Title }}</h2>
+              <div>Year: {{ item.Year }}</div>
+              <div>Type: {{ item.Type }}</div>
+              <div>IMDB-id: {{ item.imdbID }}</div>
             </div>
           </v-card-title>
 
           <v-card-actions>
-            <v-btn flat color="green" @click="singleMovie(item.imdbID)">View</v-btn>
+            <v-btn flat color="green" @click="singleMovie(item.imdbID)"
+              >View</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -53,7 +61,8 @@ export default {
     },
 
     fetchResult(value) {
-      movieApi.fetchMovieCollection(value)
+      movieApi
+        .fetchMovieCollection(value)
         .then(response => {
           if (response.Response === "True") {
             this.movieResponse = response.Search;
