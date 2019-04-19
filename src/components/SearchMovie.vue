@@ -54,7 +54,6 @@ export default {
 
     fetchResult(value) {
       movieApi.fetchMovieCollection(value)
-        .get(url)
         .then(response => {
           if (response.Response === "True") {
             this.movieResponse = response.Search;
