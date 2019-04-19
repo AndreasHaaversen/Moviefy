@@ -6,6 +6,7 @@ import SearchMovie from "@/components/SearchMovie";
 
 Vue.use(VueRouter);
 
+
 export default new VueRouter({
   routes: [
     {
