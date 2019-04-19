@@ -41,28 +41,40 @@ export default {
       loading: true
     };
   },
-  mounted() {
-    const url =
-      "http://www.omdbapi.com/?apikey=3670c846&Content-Type=application/json" + "&s=" + this.name;
-    axios
-      .get(url)
-      .then(response => {
-        this.movieResponse = response.data.Search;
-        this.loading = false;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  },
   methods: {
     singleMovie(id) {
       this.$router.push("/movie/" + id);
+    },
+
+    fetchResult(value) {
+      const url =
+        "http://www.omdbapi.com/?apikey=3670c846&Content-Type=application/json" +
+        "&s=" +
+        value;
+      axios
+        .get(url)
+        .then(response => {
+          this.movieResponse = response.data.Search;
+          this.loading = false;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
+  mounted() {
+    fetchResult(this.name);
+  },
+  watch: {
+    name(value) {
+      this.fetchResult(value);
     }
   }
 };
 </script>
 
 <style lang="stylus" scoped>
-  .v-progress-circular
-    margin: 1rem
+.v-progress-circular {
+  margin: 1rem;
+}
 </style>
