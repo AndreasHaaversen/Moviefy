@@ -33,7 +33,9 @@
           </v-card-title>
 
           <v-card-actions class="justify-center">
-            <v-btn flat color="green" @click="singleMovie(item.imdbID)">Details</v-btn>
+            <v-btn flat color="green" @click="singleMovie(item.imdbID)"
+              >Details</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-flex>
