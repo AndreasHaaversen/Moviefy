@@ -1,4 +1,4 @@
-# movie-app
+# Moviefy
 
 ## Project setup
 ```
@@ -13,6 +13,11 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
+```
+
+### Serves production build with production server
+```
+node server.js
 ```
 
 ### Run your tests
