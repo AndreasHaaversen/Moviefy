@@ -1,19 +1,13 @@
 <template>
   <v-container v-if="loading">
     <div class="text-xs-center">
-      <v-progress-circular
-        indeterminate
-        :size="150"
-        :width="8"
-        color="green"
-      ></v-progress-circular>
+      <v-progress-circular indeterminate :size="150" :width="8" color="green"></v-progress-circular>
     </div>
   </v-container>
 
   <v-container v-else-if="noData">
     <div class="text-xs-center">
-      <h2>No matches for "{{ name }}" could be found</h2>
-      >
+      <h2>No matches for "{{ name }}" could be found</h2>>
     </div>
   </v-container>
 
@@ -33,9 +27,7 @@
           </v-card-title>
 
           <v-card-actions class="justify-center">
-            <v-btn flat color="green" @click="singleMovie(item.imdbID)"
-              >Details</v-btn
-            >
+            <v-btn flat color="green" @click="singleMovie(item.imdbID)">Details</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -78,9 +70,11 @@ export default {
         });
     }
   },
+
   mounted() {
     this.fetchResult(this.name);
   },
+
   watch: {
     name(value) {
       this.fetchResult(value);

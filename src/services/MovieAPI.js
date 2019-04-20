@@ -7,7 +7,7 @@ export default {
   },
 
   async fetchSingleMovie(id) {
-    const response = await axios.get("&i=" + id);
+    const response = await axios.get("&plot=full&i=" + id);
     return response.data;
   }
 };
