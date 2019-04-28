@@ -7,7 +7,7 @@
 
   <v-container v-else-if="noData">
     <div class="text-xs-center">
-      <h2>No matches for "{{ name }}" could be found</h2>>
+      <h2>No matches for "{{ name }}" could be found</h2>
     </div>
   </v-container>
 
