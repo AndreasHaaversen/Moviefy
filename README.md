@@ -15,11 +15,6 @@ npm run serve
 npm run build
 ```
 
-### Serves production build with production server
-```
-node server.js
-```
-
 ### Run your tests
 ```
 npm run test
