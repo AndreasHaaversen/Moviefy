@@ -12,7 +12,12 @@
 
   <v-container v-else grid-list-xl>
     <v-layout wrap>
-      <v-flex xs4 v-for="item in wholeResponse.results" v-bind:key="item.id" mb-2>
+      <v-flex
+        xs4
+        v-for="item in wholeResponse.results"
+        v-bind:key="item.id"
+        mb-2
+      >
         <v-card>
           <v-img :src="image_url + item.poster_path" aspect-ratio="1"></v-img>
           <v-card-title primary-title>
@@ -30,7 +35,6 @@
           </v-card-actions>
         </v-card>
       </v-flex>
-      
     </v-layout>
   </v-container>
 </template>
@@ -43,7 +47,7 @@ export default {
     return {
       wholeResponse: [],
       loading: true,
-      image_url: 'https://image.tmdb.org/t/p/w500/',
+      image_url: "https://image.tmdb.org/t/p/w500/"
     };
   },
   mounted() {

@@ -1,7 +1,12 @@
 <template>
   <v-container v-if="loading">
     <div class="text-xs-center">
-      <v-progress-circular indeterminate :size="150" :width="8" color="green"></v-progress-circular>
+      <v-progress-circular
+        indeterminate
+        :size="150"
+        :width="8"
+        color="green"
+      ></v-progress-circular>
     </div>
   </v-container>
 
@@ -13,7 +18,12 @@
 
   <v-container v-else grid-list-xl>
     <v-layout wrap>
-      <v-flex xs4 v-for="item in movieResponse.results" v-bind:key="item.id" mb-2>
+      <v-flex
+        xs4
+        v-for="item in movieResponse.results"
+        v-bind:key="item.id"
+        mb-2
+      >
         <v-card>
           <v-img :src="image_url + item.poster_path" aspect-ratio="1"></v-img>
 
@@ -26,7 +36,9 @@
           </v-card-title>
 
           <v-card-actions class="justify-center">
-            <v-btn flat color="green" @click="singleMovie(item.id)">Details</v-btn>
+            <v-btn flat color="green" @click="singleMovie(item.id)"
+              >Details</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -44,7 +56,7 @@ export default {
       movieResponse: [],
       loading: true,
       noData: false,
-      image_url: "https://image.tmdb.org/t/p/w500/",
+      image_url: "https://image.tmdb.org/t/p/w500/"
     };
   },
   methods: {

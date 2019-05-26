@@ -14,16 +14,17 @@
     <v-layout wrap>
       <v-flex xs12 mr-1 ml-1>
         <v-card>
-          <v-img :src="image_url + singleMovie.poster_path" aspect-ratio="2"></v-img>
+          <v-img
+            :src="image_url + singleMovie.poster_path"
+            aspect-ratio="2"
+          ></v-img>
           <v-card-title primary-title>
             <div>
               <h2 class="headline mb-0">
                 {{ singleMovie.title }}
-                <div id="vote">
-                  {{ singleMovie.vote_average }}/10
-                </div>
+                <div id="vote">{{ singleMovie.vote_average }}/10</div>
               </h2>
-              <br/>
+              <br />
               <p>{{ singleMovie.overview }}</p>
               <h4>Genres:</h4>
               <ul>
@@ -33,9 +34,10 @@
               </ul>
               <p>Runtime: {{ singleMovie.runtime }} minutes</p>
               <p>Status: {{ singleMovie.status }}</p>
-              <p v-if="singleMovie.release_date">Release date: {{ singleMovie.release_date }}</p>
+              <p v-if="singleMovie.release_date">
+                Release date: {{ singleMovie.release_date }}
+              </p>
               <p>IMDB-ID: {{ singleMovie.imdb_id }}</p>
-
             </div>
           </v-card-title>
           <v-card-actions>
@@ -47,10 +49,10 @@
               @click="website"
               >Website
             </v-btn>
-            <v-btn 
+            <v-btn
               v-if="singleMovie.imdb_id"
-              flat 
-              color="green" 
+              flat
+              color="green"
               @click="openIMDB"
               >IMDB
             </v-btn>
@@ -71,7 +73,7 @@ export default {
       singleMovie: "",
       dialog: false,
       loading: true,
-      image_url: 'https://image.tmdb.org/t/p/w500/',
+      image_url: "https://image.tmdb.org/t/p/w500/"
     };
   },
   mounted() {
@@ -93,16 +95,13 @@ export default {
       window.open(this.singleMovie.homepage);
     },
     openIMDB() {
-      window.open("https://www.imdb.com/title/" + this.singleMovie.imdb_id)
+      window.open("https://www.imdb.com/title/" + this.singleMovie.imdb_id);
     }
   }
 };
 </script>
 
 <style>
-
-
-
 #vote {
   float: right;
 }
@@ -123,5 +122,4 @@ li {
 li p {
   margin: 0px;
 }
-
 </style>
