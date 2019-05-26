@@ -6,8 +6,7 @@ import axios from "axios";
 
 Vue.config.productionTip = false;
 
-axios.defaults.baseURL =
-  "https://www.omdbapi.com/?apikey=b76b385c&Content-Type=application/json";
+axios.defaults.baseURL = "https://api.themoviedb.org/3/";
 
 new Vue({
   render: h => h(App),

@@ -9,9 +9,9 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-flex xa12 sm6 md3>
-        <v-text-field label="Movie Name" v-model="searchString"></v-text-field>
+        <v-text-field label="Movie Name" v-model="searchString" @keyup.enter="searchMovie"></v-text-field>
       </v-flex>
-      <v-btn flat :disabled="!dataAvaliable" @click="searchMovie">
+      <v-btn flat :disabled="!dataAvaliable" @click="searchMovie" >
         <span class="mr-2">Search</span>
       </v-btn>
     </v-toolbar>
@@ -19,10 +19,15 @@
     <v-content>
       <router-view></router-view>
     </v-content>
+    <moviefyFooter></moviefyFooter>
   </v-app>
 </template>
 
 <script>
+
+import moviefyFooter from './components/footer.vue'
+
+
 export default {
   name: "App",
   components: {},
@@ -41,6 +46,9 @@ export default {
     dataAvaliable() {
       return this.searchString !== null && this.searchString != "";
     }
-  }
+  },
+  components: {
+    'moviefyFooter': moviefyFooter
+  },
 };
 </script>
