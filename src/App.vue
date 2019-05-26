@@ -9,9 +9,9 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-flex xa12 sm6 md3>
-        <v-text-field label="Movie Name" v-model="searchString"></v-text-field>
+        <v-text-field label="Movie Name" v-model="searchString" @keyup.enter="searchMovie"></v-text-field>
       </v-flex>
-      <v-btn flat :disabled="!dataAvaliable" @click="searchMovie">
+      <v-btn flat :disabled="!dataAvaliable" @click="searchMovie" >
         <span class="mr-2">Search</span>
       </v-btn>
     </v-toolbar>
