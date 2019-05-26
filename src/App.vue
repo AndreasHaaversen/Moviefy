@@ -50,6 +50,6 @@ export default {
     dataAvaliable() {
       return this.searchString !== null && this.searchString != "";
     }
-  },
+  }
 };
 </script>
