@@ -30,6 +30,7 @@
           </v-card-actions>
         </v-card>
       </v-flex>
+      
     </v-layout>
   </v-container>
 </template>
@@ -43,7 +44,6 @@ export default {
       wholeResponse: [],
       loading: true,
       image_url: 'https://image.tmdb.org/t/p/w500/',
-
     };
   },
   mounted() {

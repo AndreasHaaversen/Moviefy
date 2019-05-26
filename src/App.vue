@@ -19,10 +19,15 @@
     <v-content>
       <router-view></router-view>
     </v-content>
+    <moviefyFooter></moviefyFooter>
   </v-app>
 </template>
 
 <script>
+
+import moviefyFooter from './components/footer.vue'
+
+
 export default {
   name: "App",
   components: {},
@@ -41,6 +46,9 @@ export default {
     dataAvaliable() {
       return this.searchString !== null && this.searchString != "";
     }
-  }
+  },
+  components: {
+    'moviefyFooter': moviefyFooter
+  },
 };
 </script>
