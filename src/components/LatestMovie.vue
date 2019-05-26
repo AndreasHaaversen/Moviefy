@@ -12,20 +12,19 @@
 
   <v-container v-else grid-list-xl>
     <v-layout wrap>
-      <v-flex xs4 v-for="(item, index) in wholeResponse" :key="index" mb-2>
+      <v-flex xs4 v-for="item in wholeResponse.results" v-bind:key="item.id" mb-2>
         <v-card>
-          <v-img :src="item.Poster" aspect-ratio="1"></v-img>
+          <v-img :src="image_url + item.poster_path" aspect-ratio="1"></v-img>
           <v-card-title primary-title>
             <div>
-              <h2>{{ item.Title }}</h2>
-              <div>Year: {{ item.Year }}</div>
-              <div>Type: {{ item.Type }}</div>
-              <div>IMDB-ID: {{ item.imdbID }}</div>
+              <h2>{{ item.title }}</h2>
+              <div>Release: {{ item.release_date }}</div>
+              <div>Vote Average: {{ item.vote_average }}</div>
             </div>
           </v-card-title>
 
           <v-card-actions class="justify-center">
-            <v-btn flat color="green" @click="singleMovie(item.imdbID)"
+            <v-btn flat color="green" @click="singleMovie(item.id)"
               >Details</v-btn
             >
           </v-card-actions>
@@ -42,12 +41,14 @@ export default {
   data() {
     return {
       wholeResponse: [],
-      loading: true
+      loading: true,
+      image_url: 'https://image.tmdb.org/t/p/w500/',
+
     };
   },
   mounted() {
-    movieApi.fetchMovieCollection("Star Wars").then(response => {
-      this.wholeResponse = response.Search;
+    movieApi.fetchMovieDiscover().then(response => {
+      this.wholeResponse = response;
       this.loading = false;
     });
   },

@@ -14,67 +14,48 @@
     <v-layout wrap>
       <v-flex xs12 mr-1 ml-1>
         <v-card>
-          <v-img :src="singleMovie.Poster" aspect-ratio="2"></v-img>
+          <v-img :src="image_url + singleMovie.poster_path" aspect-ratio="2"></v-img>
           <v-card-title primary-title>
             <div>
               <h2 class="headline mb-0">
-                {{ singleMovie.Title }}-{{ singleMovie.Year }}
+                {{ singleMovie.title }}
+                <div id="vote">
+                  {{ singleMovie.vote_average }}/10
+                </div>
               </h2>
-              <p>{{ singleMovie.Plot }}</p>
-              <h3>Actors:</h3>
-              {{ singleMovie.Actors }}
-              <h4>Awards:</h4>
-              {{ singleMovie.Awards }}
-              <p>Genre: {{ singleMovie.Genre }}</p>
+              <br/>
+              <p>{{ singleMovie.overview }}</p>
+              <h4>Genres:</h4>
+              <ul>
+                <li v-for="genre in singleMovie.genres" v-bind:key="genre.id">
+                  <p>{{ genre.name }}</p>
+                </li>
+              </ul>
+              <p>Runtime: {{ singleMovie.runtime }} minutes</p>
+              <p>Status: {{ singleMovie.status }}</p>
+              <p v-if="singleMovie.release_date">Release date: {{ singleMovie.release_date }}</p>
+              <p>IMDB-ID: {{ singleMovie.imdb_id }}</p>
+
             </div>
           </v-card-title>
           <v-card-actions>
             <v-btn flat color="green" @click="back">Back</v-btn>
             <v-btn
-              v-if="singleMovie.Website"
+              v-if="singleMovie.homepage"
               flat
               color="green"
               @click="website"
-              >Website</v-btn
-            >
+              >Website
+            </v-btn>
+            <v-btn 
+              v-if="singleMovie.imdb_id"
+              flat 
+              color="green" 
+              @click="openIMDB"
+              >IMDB
+            </v-btn>
           </v-card-actions>
         </v-card>
-      </v-flex>
-    </v-layout>
-    <v-layout row wrap>
-      <v-flex xs12>
-        <div class="text-xs-center">
-          <v-dialog v-model="dialog" width="500">
-            <v-btn slot="activator" color="green" dark>View Ratings</v-btn>
-            <v-card>
-              <v-card-title class="headline grey lighten-2" primary-title
-                >Ratings</v-card-title
-              >
-              <v-card-text>
-                <table style="width:100%" border="1">
-                  <tr>
-                    <th>Source</th>
-                    <th>Ratings</th>
-                  </tr>
-                  <tr v-for="(rating, index) in this.ratings" :key="index">
-                    <td align="center">{{ ratings[index].Source }}</td>
-                    <td align="center">
-                      <v-rating
-                        :half-increments="true"
-                        :value="ratings[index].Value"
-                      ></v-rating>
-                    </td>
-                  </tr>
-                </table>
-              </v-card-text>
-              <v-divider></v-divider>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="primary" flat @click="dialog = false">OK</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </div>
       </v-flex>
     </v-layout>
   </v-container>
@@ -90,7 +71,7 @@ export default {
       singleMovie: "",
       dialog: false,
       loading: true,
-      ratings: ""
+      image_url: 'https://image.tmdb.org/t/p/w500/',
     };
   },
   mounted() {
@@ -98,12 +79,6 @@ export default {
       .fetchSingleMovie(this.id)
       .then(response => {
         this.singleMovie = response;
-        this.ratings = this.singleMovie.Ratings;
-        this.ratings.forEach(function(element) {
-          element.value = parseFloat(element.Value.split(/\/|%/)[0]);
-          element.Value =
-            element.value <= 10 ? element.value / 2 : element.value / 20;
-        });
         this.loading = false;
       })
       .catch(error => {
@@ -115,10 +90,38 @@ export default {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     },
     website() {
-      window.open(this.singleMovie.Website);
+      window.open(this.singleMovie.homepage);
+    },
+    openIMDB() {
+      window.open("https://www.imdb.com/title/" + this.singleMovie.imdb_id)
     }
   }
 };
 </script>
 
-<style></style>
+<style>
+
+
+
+#vote {
+  float: right;
+}
+
+h4 {
+  margin-bottom: 5px;
+}
+
+ul {
+  padding-bottom: 10px;
+}
+
+li {
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+
+li p {
+  margin: 0px;
+}
+
+</style>
