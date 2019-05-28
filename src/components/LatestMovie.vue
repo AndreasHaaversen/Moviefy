@@ -13,13 +13,14 @@
   <v-container v-else grid-list-xl>
     <v-layout wrap>
       <v-flex
+        sm3
         xs4
         v-for="item in wholeResponse.results"
         v-bind:key="item.id"
         mb-2
       >
         <v-card>
-          <v-img :src="image_url + item.poster_path" aspect-ratio="1"></v-img>
+          <v-img :src="image_url + item.poster_path" aspect-ratio="0.67"></v-img>
           <v-card-title primary-title>
             <div>
               <h2>{{ item.title }}</h2>
