@@ -20,7 +20,10 @@
         mb-2
       >
         <v-card>
-          <v-img :src="image_url + item.poster_path" aspect-ratio="0.67"></v-img>
+          <v-img
+            :src="image_url + item.poster_path"
+            aspect-ratio="0.67"
+          ></v-img>
           <v-card-title primary-title>
             <div>
               <h2>{{ item.title }}</h2>
