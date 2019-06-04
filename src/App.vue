@@ -8,6 +8,12 @@
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn flat @click="signUp">
+        <span class="mr-2">Sign Up</span>
+      </v-btn>
+      <v-btn flat @click="logIn">
+        <span class="mr-2">Log In</span>
+      </v-btn>
       <v-flex xa12 sm6 md3>
         <v-text-field
           label="Movie Name"
@@ -44,6 +50,12 @@ export default {
     searchMovie() {
       this.$router.push("/search/" + this.searchString);
       this.searchString = "";
+    },
+    signUp() {
+      this.$router.push("/signup/");
+    },
+    logIn() {
+      this.$router.push("/login/")
     }
   },
   computed: {

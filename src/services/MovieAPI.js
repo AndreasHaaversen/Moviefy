@@ -25,5 +25,10 @@ export default {
         query
     );
     return response.data;
+  },
+
+  async createSessionKey() {
+    const response = await axios.get("/authentication/guest_session/new" + key);
+    return response.data;
   }
 };
